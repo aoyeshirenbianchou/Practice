@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>shoppingCART</title>
+    <link rel="stylesheet" type="text/css" href="CSS/shoppingCart.css">
+</head>
+<body>
+	<header>
+		<ul>
+			<li><img src="IMG/logo.png"></li>
+			<li>课程</li>
+			<li>职业路径<sup><img src="IMG/icon-new.png"></sup></li>
+			<li>实战</li>
+			<li>猿问</li>
+			<li>手记</li>
+		</ul>
+		<div>
+			<form>
+				<input type="text" placeholder="前端入门">
+				<input type="submit">
+			</form>
+			<a href="#"><img src="IMG/cart-blur.png"></a>
+			<a href="#"><img src="IMG/message.png"></a>
+			<a href="#"><img src="IMG/userhead.jpg"></a>
+		</div>
+	</header>
+	<main>
+		<div class="banner"></div>
+		<section>
+			<h3>我的购物车</h3>
+			<div id="itemList">
+				<div class="itemList-table">
+					<li><input type="checkbox" name="selectAll">全选</li>
+					<li>商品名称</li>
+					<li>总价</li>
+					<li>单价</li>
+					<li>数量</li>
+					<li>操作</li>
+				</div>
+	            <!--需要的div结构形式
+				<div id="producti">
+					<input type="checkbox" name="selectEach">
+					<img src="">
+					<h6></h6>
+					<span class="totalPrice"></span>//总价
+					<span></span>//单价
+					<div>
+						<input type="button" value="+">
+						<input type="text" value="1" class="quantity">
+						<input type="button" value="-">
+					</div>
+					<input type="button" value="删除">
+				</div>
+	    		-->
+	    		<em>这里什么也没有，快去添加一些吧~</em>
+			</div>
+			<div>
+				<span>应付金额</span>
+				<span>￥</span>
+				<span id="amountPayable">0.00</span>
+				<input type="button" value="去结算">
+			</div>
+	    </section>
+	</main>
+	<footer>
+		<ul>
+			<li>网站首页</li>
+			<li>企业合作</li>
+			<li>人才招聘</li>
+			<li>联系我们</li>
+			<li>讲师招募</li>
+			<li>常见问题</li>
+			<li>意见反馈</li>
+			<li>慕课大学</li>
+			<li>友情链接</li>
+		</ul>
+		<span>Copyright&copy;2017&nbsp;imooc.com&nbsp;all&nbsp;rights&nbsp;reserved&nbsp;&#124;&nbsp;京ICP备&nbsp;13049942号2</span>
+	</footer>
+	<script type="text/javascript" src="JS/shoppingCart.js"></script>
+</body>
+</html>

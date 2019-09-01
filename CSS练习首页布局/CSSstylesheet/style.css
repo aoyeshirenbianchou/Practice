@@ -1,0 +1,260 @@
+/*格式化*/
+		*{
+			margin:0px;
+			padding:0px;
+			text-decoration:none;
+			color:#fff;
+			font-family:Calibri;
+		}
+		body{
+			min-width:900px;
+		}
+/*导航部分*/
+		.head{
+			width:100%;
+			height:60px;
+			background-color:#07cbc9;
+			position:fixed;
+			z-index:999;
+		}
+		.head img{
+			height:40px;
+			margin-top:10px;
+			margin-left:30px;
+		}
+		.head ul{
+			float:right;
+			margin-right:20px;
+		}
+		.head ul li{
+			list-style-type:none;
+			float:right;
+			height:60px;
+			line-height:60px;
+			margin-right:10px;
+			padding:0px 10px;
+		}
+		.head li:hover{
+			background-color:#000;
+		}
+/*banner部分*/
+		.banner img{
+			width:100%;
+			height:630px;
+			margin-top:60px;
+			position:relative;
+		}
+		.banner div{
+			width:100%;
+			height:630px;
+			background-color:black;
+			opacity:0.4;
+			position:absolute;
+			top:60px;
+			left:0;
+		}
+/*banner表单部分*/
+		.banner form{
+			width:300px;
+			position:absolute;
+			top:50%;
+			left:50%;
+			margin-left:-150px;
+			margin-top:-105px;
+		}
+		.banner input,
+		textarea{
+			width:288px;
+			height:25px;
+			line-height:24px;
+			margin-bottom:25px;
+			border-radius:2px;
+			background-color:transparent;
+			border:1px solid;
+			padding-left:10px;
+		}
+		.banner textarea{
+			height:100px;
+		}
+		.banner input[type=button]{
+			width:110px;
+			text-align:left;
+			margin-left:90px;
+		}
+		input:hover,
+		textarea:hover{
+			border-color:#07cbc9;
+		}
+		input[type="button"]:hover{
+			border:none;
+			background-color:#07cbc9;
+
+		}
+/*简介部分*/
+		.about{
+			text-align:center;
+			line-height:1.5em;
+			margin:30px 12%;
+			position:relative;
+		}
+		.about h1,
+		.about p,
+		.gallery h1,
+		.gallery p{
+			color:#000;
+		}
+		.about .separator,
+		.gallery .separator{
+			color:#07cbc9;
+			font-size:3em;
+		}
+		.about img{
+			width:50%;
+			margin-top:20px;			
+		}
+		.about .p1{
+			font-size:2em;
+			line-height:1.2em;
+			position:absolute;
+			top:130px;
+			left:70px;
+		}
+		.about .shade{
+			width:300px;
+			height:250px;
+			background-color:#fff;
+			opacity:0.4;
+			border:1px solid #aaa;
+			position:absolute;
+			top:210px;
+			left:70px;
+		}
+		.about .p2{
+			width:300px;
+			height:250px;
+			text-align:left;
+			margin:5px 10px;
+			position:absolute;
+			top:210px;
+			left:70px;
+		}
+		.about .p2 a{
+			background-color:black;
+			display:block;
+			width:100px;
+			text-align:center;
+			line-height:30px;
+			margin-top:10px;
+		}
+		.about .p3{
+			width:110px;
+			height:80px;
+			border:1px solid #07cbc9;
+			padding-top:8px;
+			position:absolute;
+			right:120px;
+			top:200px;
+		}
+		.about .p4{
+			width:110px;
+			height:80px;
+			border:1px solid #07cbc9;
+			padding-top:8px;
+			position:absolute;
+			right:120px;
+			top:310px;
+		}
+/*区块介绍部分*/
+		.photo{
+			width:100%;
+			margin:40px 0px;
+			overflow:hidden;
+		}
+		.photo img,
+		.photo div{
+			width:25%;
+			height:300px;
+			background-color:#07cbc9;
+			display:block;
+		}
+		.photo h5{
+			line-height:40px;
+			font-size:1.5em;
+			margin-left:10px;
+		}
+		.photo p{
+			margin:5px 10px;
+		}
+		.photo a{
+			display:block;
+			width:120px;
+			line-height:40px;
+			text-align:center;
+			background-color:#000;
+			margin:5px auto;
+		}
+		.photo .cube{
+			float:left;
+		}
+		.photo .Rtriangle{
+			width:0;
+			height:0;
+			background-color:transparent;
+			border-top:20px solid transparent;
+			border-bottom:20px solid transparent;
+			border-right:20px solid #07cbc9;
+			border-left:20px solid transparent;
+			float:left;
+			position:relative;
+			left:-40px;
+			top:130px;
+		}
+		.photo .Ltriangle{
+			width:0;
+			height:0;
+			background-color:transparent;
+			border-top:20px solid transparent;
+			border-bottom:20px solid transparent;
+			border-right:20px solid transparent;
+			border-left:20px solid #07cbc9;
+			float:right;
+			position:relative;
+			right:-40px;
+			top:130px;
+		}
+/*照片墙部分*/
+		.gallery{
+			margin:0px 10%;
+			text-align:center;
+			line-height:1.5em;
+			overflow:hidden;
+		}
+		.gallery img{
+			width:100%;
+		}
+		.gallery div{
+			width:30%;
+			background-color:#000;
+			float:left;
+			margin:20px 1% 0 2%;
+		}
+		.gallery div p{
+			color:#eee;
+			line-height:2em;
+		}
+/*页脚部分*/
+		.foot{
+			width:100%;
+			height:60px;
+			line-height:60px;
+			text-align:center;
+			background-color:#07cbc9;
+			margin-top:30px;
+		}
+		.p2 a:hover,.photo a:hover{
+			background-color:transparent;
+			border:1px solid #000;
+		}
+		.p2 a:hover{
+			color:#000;
+		}

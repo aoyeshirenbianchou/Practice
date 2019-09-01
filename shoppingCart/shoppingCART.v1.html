@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>shoppingCART</title>
+<style type="text/css">
+    *{padding:0;margin:0;list-style:none;box-sizing:border-box;}
+    input{outline:none;cursor:pointer;}
+    img{height:80%;}
+    section{
+    	width:700px;
+    	height:580px;
+    }
+    section>h3{
+    	height:40px;
+    }
+    #itemList{
+    	width:700px;
+    	height:480px;
+    	border:1px solid #eee;
+    	overflow:scroll;
+    }
+    #itemList::-webkit-scrollbar{display:none;}
+    #itemList>.itemList-table{
+    	height:40px;
+    	background-color:#eee;
+    }
+    #itemList>div{
+    	height:110px;
+    	border-top:1px solid #eee;
+    	display:flex;
+    	justify-content:space-around;
+    	align-items:center;
+    }
+    #itemList>div>h6{
+    	width:200px;
+    	height:70%;
+    	white-space:nowrap;
+    	overflow:hidden;
+    	text-overflow:ellipsis;
+    }
+    #itemList>div>div>input[type="button"]{
+    	width:15px;
+    	height:15px;
+    	border:1px solid #eee;
+    	background:transparent;
+    }
+    #itemList>div>div>input[type="button"]:active{background:#eee;}
+    #itemList>div>div>input[type="text"]{
+    	width:35px;
+    	height:25px;
+    	border:1px solid #eee;
+    	margin:0 5px;
+    }
+    #itemList .itemList-table li:first-child{
+    	width:95px;
+    }
+    #itemList .itemList-table li:nth-child(2){
+    	width:170px;
+    }
+    #itemList>div>input:last-child{
+    	width:50px;
+    	height:30px;
+    	border:none;
+    	background:transparent;
+    }
+    #itemList>div>input:last-child:active{background:#eee;}
+    section>div:last-child{
+    	width:700px;
+    	height:40px;
+    	margin:10px 0;
+    	border:1px solid #eee;
+    	display:flex;
+    	justify-content:flex-end;
+    	align-items:center;
+    }
+    .totalprice{
+    	width:60px;
+    }
+    section>div:last-child>span:nth-child(2),
+    section>div:last-child>span:nth-child(3){color:red;}
+    section>div:last-child>input{
+    	width:100px;
+    	height:40px;
+    	border:none;
+    	background:red;
+    	color:white;
+    	font-size:1.1em;
+    	margin-left:10px;
+    }
+</style>
+</head>
+<body> 
+	<main>
+		<section>
+			<h3>我的购物车</h3>
+			<div id="itemList">
+				<div class="itemList-table">
+					<li><input type="checkbox" name="selectAll">全选</li>
+					<li>商品名称</li>
+					<li>总价</li>
+					<li>单价</li>
+					<li>数量</li>
+					<li>操作</li>
+				</div>
+	    <!--
+	    需要的div结构
+				<div id="producti">
+					<input type="checkbox" name="selectEach">
+					<img src="">
+					<h6></h6>
+					<span class="totalprice"></span>//总价
+					<span></span>//单价
+					<div>
+						<input type="button" value="+">
+						<input type="text" value="1" class="quantity">
+						<input type="button" value="-">
+					</div>
+					<input type="button" value="删除">
+				</div>
+	    -->
+			</div>
+			<div>
+				<span>应付金额</span>
+				<span>￥</span>
+				<span id="amountPayable">0.00</span>
+				<input type="button" value="去结算">
+			</div>
+	    </section>
+	</main>
+	<script type="text/javascript">
+	//商品信息
+		data=[
+			product1={
+				imgsrc:"IMG/imga.jpg",
+				describe:"【就业班】PHP小白零基础入门",
+				unitprice:"658"
+			},
+			product2={
+				imgsrc:"IMG/imgb.jpg",
+				describe:"【就业班】响应式开发与常用框架",
+				unitprice:"799"
+			},
+			product3={
+				imgsrc:"IMG/imgc.jpg",
+				describe:"【实战课程】热门框架Vue开发WebApp",
+				unitprice:"499"
+			},
+			product4={
+				imgsrc:"IMG/imgd.jpg",
+				describe:"【就业班】组件化思想开发电商网页",
+				unitprice:"680"
+			},
+			product5={
+				imgsrc:"IMG/imge.jpg",
+				describe:"【实战课程】Vue2.5开发去哪儿网App从零基础到入门实战项目",
+				unitprice:"290"
+			},
+			product6={
+				imgsrc:"IMG/imgf.jpg",
+				describe:"【实战课程】剑指Java面试offer直通车",
+				unitprice:"266"
+			}
+		];
+	//创建相应个数的商品信息包裹div
+		var itemList=document.getElementById("itemList");
+		for(var i=0;i<data.length;i++){
+			document.write(
+				"<div id='product"+i
+				+"'><input type='checkbox' name='selectEach'><img src='"+data[i].imgsrc
+				+"'><h6>"+data[i].describe
+				+"</h6><span>￥</span><span class='totalprice'>"+data[i].unitprice+"</span><span>￥"+data[i].unitprice
+				+"</span><div><input type='button' value='+'><input type='text' value='1' class='quantity'><input type='button' value='-'></div><input type='button' value='删除'></div>"
+				);
+			var node=document.getElementById("product"+i);
+			itemList.appendChild(node);
+		}
+		
+	//实现按钮数量加减
+			var btnAdd=document.querySelectorAll("input[value='+']"),
+			    btnSub=document.querySelectorAll("input[value='-']"),
+			    btnTex=document.querySelectorAll(".quantity"),
+			    totalprice=document.querySelectorAll(".totalprice"),
+			    amountPayableNum=0,
+			    checkedAmount=0;
+			for(var i=0;i<data.length;i++){
+				btnAdd[i].index=i;
+				btnSub[i].index=i;
+				btnTex[i].index=i;
+				btnAdd[i].onclick=function(){
+					btnTex[this.index].value=+btnTex[this.index].value+1;
+					totalprice[this.index].innerHTML=btnTex[this.index].value * data[this.index].unitprice;
+					if(selectEach[this.index].checked){
+						amountPayableNum+=parseInt(data[this.index].unitprice);
+						amountPayable.innerHTML=amountPayableNum;
+					}
+				}
+				btnSub[i].onclick=function(){
+					if(btnTex[this.index].value>=2){
+						btnTex[this.index].value-=1;
+						totalprice[this.index].innerHTML=btnTex[this.index].value * data[this.index].unitprice;
+						if(selectEach[this.index].checked){
+							amountPayableNum-=parseInt(data[this.index].unitprice);
+							amountPayable.innerHTML=amountPayableNum;
+						}
+					}
+				}
+			}
+	//实现选中计入总价
+
+	//实现全选
+		var selectAll=document.querySelector("input[name='selectAll']"),
+		    selectEach=document.querySelectorAll("input[name='selectEach']"),
+		    amountPayable=document.querySelector("#amountPayable");
+		    console.log(selectEach.length);
+		selectAll.onclick=function(){
+			if(selectAll.checked==true){
+				amountPayableNum=0;
+				for(var i=0;i<selectEach.length;i++){
+					selectEach[i].checked=true;
+					amountPayableNum+=parseInt(totalprice[i].innerHTML);
+					amountPayable.innerHTML=amountPayableNum;
+				}
+			}else{
+				for(var i=0;i<selectEach.length;i++){
+					selectEach[i].checked=false;
+					amountPayableNum=0;
+					amountPayable.innerHTML=amountPayableNum;
+				}
+			}
+		}
+	    //emmmm实现选出来的全选或取消全选
+		for(var i=0;i<selectEach.length;i++){
+			selectEach[i].index=i;
+			selectEach[i].onclick=function(){
+				if(this.checked){
+					checkedAmount+=1;
+					if(checkedAmount!=selectEach.length){
+						selectAll.checked=false;
+					}else{
+						selectAll.checked=true;
+					}
+					amountPayableNum+=parseInt(totalprice[this.index].innerHTML);
+					amountPayable.innerHTML=amountPayableNum;
+				}else{
+					checkedAmount-=1;
+					if(checkedAmount!=selectEach.length){
+						selectAll.checked=false;
+					}else{
+						selectAll.checked=true;
+					}
+					amountPayableNum-=parseInt(totalprice[this.index].innerHTML);
+					amountPayable.innerHTML=amountPayableNum;
+				}
+			}
+		}
+		
+		var delet=document.querySelectorAll("input[value='删除']");
+		for(var i=0;i<data.length;i++){
+			delet[i].index=i;
+			delet[i].onclick=function(){
+				data.splice(this.index,1);
+				console.log(data.length,data);
+				var deletnode=document.querySelector('#product'+this.index);
+				itemList.removeChild(deletnode);
+			}
+		}
+
+
+//精简代码
+//写背景
+	</script>
+</body>
+</html>
